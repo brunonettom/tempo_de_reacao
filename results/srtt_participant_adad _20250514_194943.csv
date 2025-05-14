@@ -1,0 +1,27 @@
+participant_id,block,block_type,trial,position,reaction_time,correct,attempt,timestamp
+adad ,1,structured,1,1,2687.84,False,1,2025-05-14 19:49:28
+adad ,1,structured,1,1,3100.5,True,2,2025-05-14 19:49:28
+adad ,1,structured,2,3,798.14,True,1,2025-05-14 19:49:29
+adad ,1,structured,3,5,1514.51,True,1,2025-05-14 19:49:31
+adad ,1,structured,4,4,476.3,True,1,2025-05-14 19:49:31
+adad ,1,structured,5,5,376.57,True,1,2025-05-14 19:49:32
+adad ,1,structured,6,2,533.2,True,1,2025-05-14 19:49:32
+adad ,1,structured,7,3,454.21,True,1,2025-05-14 19:49:33
+adad ,1,structured,8,5,633.41,True,1,2025-05-14 19:49:34
+adad ,1,structured,9,3,658.93,False,1,2025-05-14 19:49:35
+adad ,1,structured,9,3,945.36,False,2,2025-05-14 19:49:35
+adad ,1,structured,9,3,1145.99,False,3,2025-05-14 19:49:35
+adad ,1,structured,9,3,1346.4,False,4,2025-05-14 19:49:35
+adad ,1,structured,9,3,1586.83,True,5,2025-05-14 19:49:35
+adad ,1,structured,10,5,555.99,True,1,2025-05-14 19:49:36
+adad ,2,random,1,3,730.67,True,1,2025-05-14 19:49:38
+adad ,2,random,2,1,511.5,True,1,2025-05-14 19:49:39
+adad ,2,random,3,2,380.43,True,1,2025-05-14 19:49:39
+adad ,2,random,4,4,457.74,False,1,2025-05-14 19:49:40
+adad ,2,random,4,4,740.56,True,2,2025-05-14 19:49:40
+adad ,2,random,5,2,480.67,True,1,2025-05-14 19:49:41
+adad ,2,random,6,4,401.76,True,1,2025-05-14 19:49:41
+adad ,2,random,7,2,481.94,True,1,2025-05-14 19:49:42
+adad ,2,random,8,1,394.16,True,1,2025-05-14 19:49:42
+adad ,2,random,9,4,413.06,True,1,2025-05-14 19:49:43
+adad ,2,random,10,5,352.41,True,1,2025-05-14 19:49:43

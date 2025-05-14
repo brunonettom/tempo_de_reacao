@@ -1,0 +1,24 @@
+participant_id,block,block_type,trial,position,reaction_time,correct,attempt,timestamp
+oijoij,1,structured,1,1,1797.55,True,1,2025-05-14 19:52:34
+oijoij,1,structured,2,3,397.08,True,1,2025-05-14 19:52:35
+oijoij,1,structured,3,2,97.26,False,1,2025-05-14 19:52:35
+oijoij,1,structured,3,2,579.31,True,2,2025-05-14 19:52:35
+oijoij,1,structured,4,1,464.58,True,1,2025-05-14 19:52:36
+oijoij,1,structured,5,4,294.74,True,1,2025-05-14 19:52:36
+oijoij,1,structured,6,2,435.56,False,1,2025-05-14 19:52:37
+oijoij,1,structured,6,2,635.61,True,2,2025-05-14 19:52:37
+oijoij,1,structured,7,3,506.09,True,1,2025-05-14 19:52:38
+oijoij,1,structured,8,4,350.9,True,1,2025-05-14 19:52:38
+oijoij,1,structured,9,1,421.37,True,1,2025-05-14 19:52:39
+oijoij,1,structured,10,2,395.45,True,1,2025-05-14 19:52:39
+oijoij,2,random,1,1,608.73,True,1,2025-05-14 19:52:41
+oijoij,2,random,2,4,401.25,True,1,2025-05-14 19:52:41
+oijoij,2,random,3,2,403.04,True,1,2025-05-14 19:52:42
+oijoij,2,random,4,3,371.7,True,1,2025-05-14 19:52:42
+oijoij,2,random,5,2,410.95,True,1,2025-05-14 19:52:43
+oijoij,2,random,6,4,513.39,True,1,2025-05-14 19:52:44
+oijoij,2,random,7,2,562.85,False,1,2025-05-14 19:52:44
+oijoij,2,random,7,2,878.94,True,2,2025-05-14 19:52:44
+oijoij,2,random,8,3,539.11,True,1,2025-05-14 19:52:45
+oijoij,2,random,9,2,462.79,True,1,2025-05-14 19:52:46
+oijoij,2,random,10,1,407.46,True,1,2025-05-14 19:52:46
