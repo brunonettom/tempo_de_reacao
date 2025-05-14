@@ -78,8 +78,16 @@ class SRTTExperiment:
     def generate_structured_sequence(self):
         """Generate a structured sequence for the current number of positions"""
         if self.positions <= 4:
-            # For 4 positions or less, use the default sequence
-            return DEFAULT_STRUCTURED_SEQUENCE
+            # Para posições <= 4, adaptar a sequência padrão
+            if self.positions == 2:
+                # Para 2 posições, usar apenas valores 0 e 1
+                return [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+            elif self.positions == 3:
+                # Para 3 posições, usar apenas valores 0, 1 e 2
+                return [0, 2, 1, 0, 2, 1, 2, 0, 1, 2]
+            else:
+                # Para 4 posições, usar a sequência padrão
+                return DEFAULT_STRUCTURED_SEQUENCE
         else:
             # For more positions, create a new balanced sequence
             seq = []
@@ -171,9 +179,11 @@ class SRTTExperiment:
                     elif continue_rect.collidepoint(event.pos):
                         # Save settings and continue
                         try:
-                            self.positions = max(1, int(position_value))
-                            self.blocks = max(1, int(blocks_value))
-                            self.trials_per_block = max(1, int(trials_value))
+                            # Garantir pelo menos 2 posições
+                            position_value = max(2, int(position_value)) if position_value else DEFAULT_POSITIONS
+                            self.positions = min(position_value, 10)  # Limitar a 10 posições (número de teclas disponíveis)
+                            self.blocks = max(1, int(blocks_value)) if blocks_value else DEFAULT_BLOCKS
+                            self.trials_per_block = max(1, int(trials_value)) if trials_value else DEFAULT_TRIALS_PER_BLOCK
                             done = True
                         except ValueError:
                             # If conversion fails, use default values
@@ -221,15 +231,20 @@ class SRTTExperiment:
             remainder = self.trials_per_block % SEQUENCE_LENGTH
             sequence = (structured_sequence * repetitions) + structured_sequence[:remainder]
             
+            # Garantir que todas as posições na sequência são válidas
+            for i in range(len(sequence)):
+                if sequence[i] >= self.positions:
+                    sequence[i] = sequence[i] % self.positions
+            
             # Modify the sequence to ensure no immediate repetitions
             for i in range(1, len(sequence)):
                 if sequence[i] == sequence[i-1]:
                     # Find a non-repeating value
-                    options = list(range(self.positions))
-                    options.remove(sequence[i-1])
-                    if options:  # Make sure we have options
+                    options = list(range(self.positions))  # Usar apenas posições válidas
+                    if len(options) > 1:  # Garantir que temos opções
+                        options.remove(sequence[i-1])
                         sequence[i] = random.choice(options)
-                    
+                        
             return sequence
         else:
             # For random blocks, generate a pseudo-random sequence
@@ -238,18 +253,21 @@ class SRTTExperiment:
             
             for _ in range(self.trials_per_block):
                 # Generate new positions ensuring no immediate repetitions
-                available_positions = list(range(self.positions))
+                available_positions = list(range(self.positions))  # Garantir apenas posições válidas
+                
                 if last_position is not None and last_position in available_positions:
-                    available_positions.remove(last_position)
+                    if len(available_positions) > 1:  # Se houver mais de uma opção
+                        available_positions.remove(last_position)
                 
                 if available_positions:  # Make sure we have options
                     new_position = random.choice(available_positions)
-                    random_sequence.append(new_position)
-                    last_position = new_position
                 else:
-                    # Fallback if we somehow have only one position available
-                    random_sequence.append(random.randint(0, self.positions-1))
-                
+                    # Fallback para quando há apenas uma posição
+                    new_position = 0
+                    
+                random_sequence.append(new_position)
+                last_position = new_position
+                    
             return random_sequence
     
     def collect_participant_info(self):
@@ -429,8 +447,19 @@ class SRTTExperiment:
     
     def present_trial(self):
         """Present a single trial"""
-        self.current_position = self.block_sequence[self.current_trial]
-        # Remover uso da variável show_stimulus que estava causando problemas
+        # Verificar se ainda há posições válidas no bloco
+        if self.current_trial < len(self.block_sequence):
+            self.current_position = self.block_sequence[self.current_trial]
+            
+            # Garantir que a posição seja válida para o número atual de posições
+            if self.current_position >= self.positions:
+                self.current_position = self.current_position % self.positions
+                # Atualizar a sequência para evitar esse problema no futuro
+                self.block_sequence[self.current_trial] = self.current_position
+        else:
+            # Fallback: usar uma posição aleatória válida
+            self.current_position = random.randint(0, self.positions - 1)
+        
         self.start_time = time.time()
         
         # Reset for next trial
